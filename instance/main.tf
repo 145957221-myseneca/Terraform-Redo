@@ -60,7 +60,7 @@ resource "aws_instance" "my_amazon" {
     sudo yum install mysql -y
     sudo systemctl start docker
     sudo usermod -a -G docker ec2-user
-    docker network create mynetwork1
+    docker network create Dnet1
   EOF
     
             
@@ -143,7 +143,7 @@ data "aws_iam_instance_profile" "lab_profile" {
 
 #ECR app
 resource "aws_ecr_repository" "webapp-repo" {
-  name                 = "webapp"
+  name                 = "webapp-ecr"
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
@@ -156,7 +156,7 @@ resource "aws_ecr_repository" "webapp-repo" {
 
 #ECR repo
 resource "aws_ecr_repository" "mysql-repo" {
-  name                 = "mysql"
+  name                 = "mysql-ecr"
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
